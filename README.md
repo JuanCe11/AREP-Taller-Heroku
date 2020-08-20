@@ -2,16 +2,17 @@
 
 Talller 1 - AREP 
 
-Introduction To Complex Systems, Java, Mvn, And Git
+Introduction To Computer System Design
+
 
 ## Comenzando 
 
-Revise el archivo [Descripción](https://github.com/JuanCe11/AREP-Taller1/blob/master/Taller_1_AREP.pdf) para tener informacion básica del problema y la solución propuesta.
+Revise el archivo [Descripción](https://github.com/JuanCe11/AREP-Taller1-Heroku/blob/master/Taller_2_AREP.pdf) para tener informacion básica del problema y la solución propuesta.
 
 Para tener una copia del repositorio, desde consola ejecute el siguiente comando.
 
 ```
-git clone https://github.com/JuanCe11/AREP-Taller1.git
+git clone https://github.com/JuanCe11/AREP-Taller-Heroku.git
 ```
 
 ### Pre-requisitos 
@@ -23,15 +24,29 @@ git clone https://github.com/JuanCe11/AREP-Taller1.git
 
 ### Instalación 
 
-Para la correcta instalación se debe primero clonar el repositorio como se indicó anteriormente, después se ingresa al directorio del proyecto y para ejecutar la clase App (clase con el ejemplo de uso) se ejecutan los siguientes comandos.
+Para la correcta instalación se debe primero clonar el repositorio como se indicó anteriormente, después se ingresa al directorio del proyecto y para ejecutar la clase App (clase con el ejemplo de uso) se ejecutan los siguientes comandos en windows.
 
 ```
-cd AREP-Taller1
+cd AREP-Taller-Heroku
 mvn package
-java -cp target/taller-1-1.0-SNAPSHOT.jar edu.escuelaing.arep.taller1.App
+java -cp target/classe;target/dependency/* edu.escuelaing.arep.web.App
+```
+
+Para sistemas linux usar:
+
+```
+cd AREP-Taller-Heroku
+mvn package
+java -cp target/classes:target/dependency/* edu.escuelaing.arep.web.App
 ```
 
 Puede revisar las fuentes del proyecto revisar a detalle los test.
+
+Puede generar la docuementacion usando:
+
+```
+mvn javadoc:javadoc
+```
 
 ## Ejecutando las pruebas 
 
@@ -43,7 +58,7 @@ mvn test
 
 ### Analice las pruebas end-to-end 
 
-Las pruebas propuestas están enfocadas a la clase _Calculadora_ pero al probar las funcionalidades de esta clase se están utilizando todas las clases de la solución.
+Las pruebas propuestas están enfocadas a la clase _Calculator_ pero al probar las funcionalidades de esta clase se están utilizando todas las clases de la solución.
 
 Se está probando que el lector de archivos funcione para obtener los datos, se crea la lista encadenada y se le agregan los nodos con los valores que se obtuvieron de los archivos.
 
@@ -52,11 +67,12 @@ Se está probando que el lector de archivos funcione para obtener los datos, se c
 
 * [Java 8](https://www.java.com/es/about/whatis_java.jsp)
 * [Maven](https://maven.apache.org/) - Manejador de dependencias
+* [Spark Java](http://sparkjava.com/) - Framework de aplicación web.
 
 
 ## Wiki
 
-Puedes encontrar mucho más de cómo utilizar este proyecto en nuestra [Wiki](https://github.com/JuanCe11/AREP-Taller1/wiki)
+Puedes encontrar mucho más de cómo utilizar este proyecto en nuestra [Wiki](https://github.com/JuanCe11/AREP-Taller-Heroku/wiki)
 
 
 ## Autores 

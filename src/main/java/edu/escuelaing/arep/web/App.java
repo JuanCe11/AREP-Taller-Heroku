@@ -29,17 +29,17 @@ public class App {
 		staticFiles.location("/public");
         
         get("/", (req, res) -> {
-            Map<String, Object> model = new HashMap<String, Object>();
-            model.put("mean", 0);
-            model.put("desvest", 0);
-            model.put("valid",true);
-            return new ModelAndView(model, "index.vm");
+            Map<String, Object> lm_model = new HashMap<String, Object>();
+            lm_model.put("mean", 0);
+            lm_model.put("desvest", 0);
+            lm_model.put("valid",true);
+            return new ModelAndView(lm_model, "index.vm");
         }, new VelocityTemplateEngine());
         
         get("/result", (req, res) -> {
-        	Map<String, Object> model = new HashMap<String, Object>();
-        	model.put("valid",resultData(model,req,res));
-        	return new ModelAndView(model, "index.vm");
+        	Map<String, Object> lm_model = new HashMap<String, Object>();
+        	lm_model.put("valid",resultData(lm_model,req,res));
+        	return new ModelAndView(lm_model, "index.vm");
         }, new VelocityTemplateEngine());
 
 	}
@@ -60,16 +60,16 @@ public class App {
 	/**
 	 * Method in charge of generating the values of the mean and the standard deviation.
 	 * 
-	 * @param model Data that will be passed to the template.
-	 * @param req Request received by the server
-	 * @param res Server response.
+	 * @param am_model Data that will be passed to the template.
+	 * @param ar_req Request received by the server
+	 * @param ar_res Server response.
 	 * @return Returns if it was possible to calculate the data with the information entered.
 	 */
-	private static boolean resultData(Map<String, Object> model, Request req, Response res){
+	private static boolean resultData(Map<String, Object> am_model, Request ar_req, Response ar_res){
 		String ls_values;
 		boolean lb_resp;
 		
-		ls_values = req.queryParams("list");
+		ls_values = ar_req.queryParams("list");
 		lb_resp = validList(ls_values);
 		
 		if (lb_resp) {
@@ -86,16 +86,16 @@ public class App {
         	
         	ld_res = Calculator.mean(lle_list);
         	ld_res = (double) Math.round(ld_res * 100) / 100;
-        	model.put("mean", ld_res);
+        	am_model.put("mean", ld_res);
         	
         	ld_res = Calculator.standardDeviation(lle_list);
         	ld_res = (double) Math.round(ld_res * 100) / 100;
-        	model.put("desvest", ld_res);
+        	am_model.put("desvest", ld_res);
 		}
 		else
 		{
-			model.put("mean", 0);
-        	model.put("desvest",0);
+			am_model.put("mean", 0);
+        	am_model.put("desvest",0);
 		}
 		
 		return lb_resp;
