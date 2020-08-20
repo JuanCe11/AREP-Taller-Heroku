@@ -1,28 +1,29 @@
-package edu.escuelaing.arep;
+package edu.escuelaing.arep.calculator;
 
 import java.util.Collection;
 import java.util.Iterator;
 
 /**
+ * 
  * Clase encargada de simular el comportamiento de una lista encadenada
  *
  */
-public class ListaEncadenada implements Collection<Node>{
+public class LinkedList implements Collection<Node>{
 	
 	/** Propiedad cabeza*/
 	private Node in_cabeza;
 	
 	/**
-	 * M�todo encargado de instanciar un objeto de ListaEncadenada
+	 * Metodo encargado de instanciar un objeto de ListaEncadenada
 	 */
-	public ListaEncadenada() {
+	public LinkedList() {
 		in_cabeza = null;
 	}
 	
 	/**
-	 * M�todo encargado de dar el tama�o de la lista
+	 * Metodo encargado de dar el tamaño de la lista
 	 * 
-	 * @return El tam�ao de la lista
+	 * @return El tamñao de la lista
 	 */
 	public int size() {
 		int li_cantidad;
@@ -40,16 +41,16 @@ public class ListaEncadenada implements Collection<Node>{
 	}
 	
 	/**
-	 * M�todo enrgado de validar si la lista esta vac�a
+	 * Metodo enrgado de validar si la lista esta vacia
 	 * 
-	 *  @return Si la lista esta vac�a
+	 *  @return Si la lista esta vacia
 	 */
 	public boolean isEmpty() {
 		return in_cabeza == null;
 	}
 	
 	/**
-	 * M�todo encargado de buscar un elemento dentro de la lista
+	 * Metodo encargado de buscar un elemento dentro de la lista
 	 *
 	 * @param ao_o Elemento a buscar dentro de la lista 
 	 * @return Si el elemento esta dentro de la lista
@@ -78,12 +79,12 @@ public class ListaEncadenada implements Collection<Node>{
 	 * 
 	 * @return un objeto de tipo <code>Iterator</code> sobre la lista.
 	 */
-	public Iterator iterator() {			
+	public Iterator<Node> iterator() {			
 		return new Iterador();
 	}
 	
 	/**
-	 * M�todo encargado de convertir la lista en un arreglo de sus elmentos
+	 * Metodo encargado de convertir la lista en un arreglo de sus elmentos
 	 * 
 	 * @return Un arreglo con todos los elentos de la lista
 	 */
@@ -105,10 +106,10 @@ public class ListaEncadenada implements Collection<Node>{
 	
 	
 	/**
-	 * M�todo encargado de eliminar un objeto dentro de la lista
+	 * Metodo encargado de eliminar un objeto dentro de la lista
 	 * 
 	 * @param ao_o objeto a eliminar dentro de la lista 
-	 * @return Si la operac�n se realizo exitosamente
+	 * @return Si la operacon se realizo exitosamente
 	 */
 	public boolean remove(Object ao_o) {
 		boolean lb_encontrado;
@@ -133,10 +134,10 @@ public class ListaEncadenada implements Collection<Node>{
 	}
 	
 	/**
-	 * Retorna true si esta colecci�n contiene todos los elementos la de colecci�n especificada.
+	 * Retorna true si esta coleccion contiene todos los elementos la de coleccion especificada.
 	 * 
-	 * @param ac_c Coleci�n a ser revisada
-	 * @return true si esta colecci�n contiene todos los elementos la de colecci�n especificada.
+	 * @param ac_c Colecion a ser revisada
+	 * @return true si esta coleccion contiene todos los elementos la de coleccion especificada.
 	 */
 	public boolean containsAll(Collection<?> ac_c) {
 		for (Object lo_iterador : ac_c) 
@@ -153,6 +154,7 @@ public class ListaEncadenada implements Collection<Node>{
 	 * @param ac_c La coleci�n a agregar.
 	 * @return true si la acci�n se realiz� correctamente.
 	 */
+	@SuppressWarnings("rawtypes")
 	public boolean addAll(Collection ac_c) {
 		
 		for (Object lo_iterador : ac_c) 

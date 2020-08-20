@@ -29,7 +29,7 @@
 						</span>
 					#end
 					<div class="wrap-input100">
-						<input type='text' name='lista' class="input100">
+						<input type='text' name='list' class="input100">
 						<span class="focus-input100"></span>
 					</div>
 					<div class="container-ogin100-form-btn">

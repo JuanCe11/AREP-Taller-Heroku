@@ -1,32 +1,34 @@
-package edu.escuelaing.arep;
+package edu.escuelaing.arep.web;
 
 import static spark.Spark.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import edu.escuelaing.arep.calculator.Calculator;
+import edu.escuelaing.arep.calculator.StringReader;
+import edu.escuelaing.arep.calculator.LinkedList;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
-import spark.Route;
 import spark.template.velocity.VelocityTemplateEngine;
 
 /**
- * Clase encargada de iniciar el servicio.
+ * Class in charge of starting the service.
  *
  */
 public class App {
 	
 	/**
-	 * Clase principal que inicia el hilo princpal del servicio.
+	 * Main class that starts the main thread of the service.
 	 * 
-	 * @param args Array de strings
+	 * @param args String array
 	 */
 	public static void main(String[] args) {
 		port(getPort());
 		staticFiles.location("/public");
         
-        get("/index", (req, res) -> {
+        get("/", (req, res) -> {
             Map<String, Object> model = new HashMap<String, Object>();
             model.put("mean", 0);
             model.put("desvest", 0);
@@ -43,9 +45,9 @@ public class App {
 	}
 	
 	/**
-	 * Especifica el puerto en el que s eva a correr el servicio.
+	 * Specifies the port on which the service will run.
 	 * 
-	 * @return El puerto en el que se va a correr el servicio.
+	 * @return The port where the service will be run.
 	 */
 	public static int getPort() {    
 		if (System.getenv("PORT") != null)
@@ -56,37 +58,37 @@ public class App {
 	}
 	
 	/**
-	 * Metodo encargado de generar los valores de la media y la desviacion estandar.
+	 * Method in charge of generating the values of the mean and the standard deviation.
 	 * 
-	 * @param model Datos que se le van a pasar al template.
-	 * @param req Peticion que recibe el servidor
-	 * @param res Respuesta del servidor.
-	 * @return Retorna si fue posible calcular los datos con la informacion ingresada.
+	 * @param model Data that will be passed to the template.
+	 * @param req Request received by the server
+	 * @param res Server response.
+	 * @return Returns if it was possible to calculate the data with the information entered.
 	 */
-	private static boolean resultData(Map model, Request req, Response res){
+	private static boolean resultData(Map<String, Object> model, Request req, Response res){
 		String ls_values;
 		boolean lb_resp;
 		
-		ls_values = req.queryParams("lista");
+		ls_values = req.queryParams("list");
 		lb_resp = validList(ls_values);
 		
 		if (lb_resp) {
 			double[] lda_numbers;
-        	ListaEncadenada lle_list;
+        	LinkedList lle_list;
         	
-        	lda_numbers = LectorArchivos.convertArray(ls_values);
-        	lle_list = new ListaEncadenada();
+        	lda_numbers = StringReader.convertArray(ls_values);
+        	lle_list = new LinkedList();
         	
         	for (int i = 0; i < lda_numbers.length; i++) {
 				lle_list.add(lda_numbers[i]);
 			}
         	double ld_res;
         	
-        	ld_res = Calculadora.media(lle_list);
+        	ld_res = Calculator.mean(lle_list);
         	ld_res = (double) Math.round(ld_res * 100) / 100;
         	model.put("mean", ld_res);
         	
-        	ld_res = Calculadora.desviacionEstandar(lle_list);
+        	ld_res = Calculator.standardDeviation(lle_list);
         	ld_res = (double) Math.round(ld_res * 100) / 100;
         	model.put("desvest", ld_res);
 		}
@@ -100,10 +102,10 @@ public class App {
 	}
 	
 	/**
-	 * Valida si una string es valida para calcular los valores. 
+	 * Validate if a string is valid to calculate the values.
 	 * 
-	 * @param as_list String que se va a validar.
-	 * @return si la string es valida
+	 * @param as_list String to validate.
+	 * @return if the string is valid
 	 */
 	private static boolean validList(String as_list) {
 		String[] lsa_parts;

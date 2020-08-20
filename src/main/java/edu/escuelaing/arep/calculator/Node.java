@@ -1,4 +1,4 @@
-package edu.escuelaing.arep;
+package edu.escuelaing.arep.calculator;
 
 /**
  * Clase encargada de mostrar el comportamiento de un nodo 
